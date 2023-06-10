@@ -22,21 +22,9 @@ local plugins = {
   },
 
   -- override plugin configs
-  {
-    "williamboman/mason.nvim",
-    opts = overrides.mason,
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
-  },
-
-  {
-    "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
-  },
-
+  { "williamboman/mason.nvim", opts = overrides.mason },
+  { "nvim-treesitter/nvim-treesitter", opts = overrides.treesitter },
+  { "nvim-tree/nvim-tree.lua", opts = overrides.nvimtree },
   -- Better escape using `jk`
   {
     "max397574/better-escape.nvim",
@@ -45,49 +33,49 @@ local plugins = {
       require("better_escape").setup()
     end,
   },
-
   --  Quick jumping around documents
   {
     "easymotion/vim-easymotion",
     lazy = false,
+    config = function()
+      require "custom.configs.easymotion"
+    end,
   },
-
   -- Quick two-letter searches
-  {
-    "justinmk/vim-sneak",
-    keys = { "s", "S" },
-  },
+  { "justinmk/vim-sneak", keys = { "s", "S" } },
 
   -- Navigate thorugh file tags/functions
   {
     "preservim/tagbar",
     cmd = { "TagbarToggle", "TagbarOpen" },
+    config = function()
+      require "custom.configs.tagbar"
+    end,
   },
-
   -- Mappings to surround words with chars
-  {
-    "tpope/vim-surround",
-    lazy = false,
-  },
-
+  { "tpope/vim-surround", lazy = false },
   -- Git commands
   {
     "tpope/vim-fugitive",
     cmd = "G",
   },
-
   -- Git diff
   {
     "sindrets/diffview.nvim",
     cmd = "DiffviewOpen",
     lazy = false,
+    config = function()
+      require "custom.configs.diffview"
+    end,
   },
-
   -- Toggle terminals from within vim
   {
     "akinsho/toggleterm.nvim",
     cmd = "ToggleTerm",
     lazy = false,
+    config = function()
+      require "custom.configs.toggleterm"
+    end,
   },
 
   -- ---------------------------------------------------------------
@@ -95,25 +83,33 @@ local plugins = {
   -- ---------------------------------------------------------------
   -- Doxygen comments
   {
-    "mrtazz/DoxygenToolkit.vim",
+    "MRTAZZ/DOXYGENTOOLKIT.VIM",
     ft = "cpp",
-    event = "BufEnter",
+    event = "bufenter",
     lazy = false,
+    config = function()
+      require "custom.configs.doxygentoolkit"
+    end,
   },
   -- Clang format. Note that it may not be used if LSP formatter is already setup
-  {
-    "rhysd/vim-clang-format",
-    ft = "cpp",
-    enabled = false,
-  },
+  { "rhysd/vim-clang-format", ft = "cpp", enabled = false },
   -- Header guard
   {
     "drmikehenry/vim-headerguard",
     ft = "cpp",
+    config = function()
+      require "custom.configs.headerguard"
+    end,
   },
   -- CMake management
-  { "cdelledonne/vim-cmake", ft = { "cpp", "cmake" } },
-
+  {
+    "cdelledonne/vim-cmake",
+    ft = { "cpp", "cmake" },
+    lazy = false,
+    config = function()
+      require "custom.configs.cmake"
+    end,
+  },
   -- Preview markdown files
   {
     "iamcco/markdown-preview.nvim",
@@ -126,10 +122,7 @@ local plugins = {
   { "mzlogin/vim-markdown-toc", ft = "md" },
 
   -- Seamless navigation between tmux and vim
-  {
-    "christoomey/vim-tmux-navigator",
-    lazy = false,
-  },
+  { "christoomey/vim-tmux-navigator", lazy = false },
 
   -- Fuzzy search
   {
@@ -138,13 +131,21 @@ local plugins = {
       vim.cmd "silent! call fzf#install()"
     end,
     lazy = false,
+    config = function()
+      require "custom.configs.fzf"
+    end,
   },
+
+  -- Fzf
   { "junegunn/fzf.vim", lazy = false },
 
   -- Startup menu
   {
     "mhinz/vim-startify",
     lazy = false,
+    config = function()
+      require "custom.configs.startify"
+    end,
   },
 
   -- Latex support

@@ -1,26 +1,10 @@
----@type ChadrcConfig
-local M = {}
-
--- Path to overriding theme and highlights files
-local highlights = require "custom.highlights"
-
-M.ui = {
-  theme = "yoru",
-  theme_toggle = { "yoru", "one_light" },
-
-  hl_override = highlights.override,
-  hl_add = highlights.add,
-}
-
-M.plugins = "custom.plugins"
-
 local options = {
   backup = false,                          -- creates a backup file
-  clipboard = "unnamed",                   -- Set to 'unnamedplus' to use system clipboard, or 'unnamed' for vim clipboard
+  --clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   cmdheight = 1,                           -- more space in the neovim command line for displaying messages
-  -- completeopt = { "menuone", "noselect" }, -- mostly just for cmp
+  completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
-  -- fileencoding = "utf-8",                  -- the encoding written to a file
+  fileencoding = "utf-8",                  -- the encoding written to a file
   hlsearch = false,                        -- highlight all matches on previous search pattern
   incsearch = true,                        -- Incremental search
   ignorecase = true,                       -- ignore case in search patterns
@@ -53,7 +37,7 @@ local options = {
   wrapscan = false,                        -- Wrap search around document
   linebreak = true,                        -- companion to wrap, don't split words
   scrolloff = 8,                           -- minimal number of screen lines to keep above and below the cursor
-  -- sidescrolloff = 8,                       -- minimal number of screen columns either side of cursor if wrap is `false`
+  sidescrolloff = 8,                       -- minimal number of screen columns either side of cursor if wrap is `false`
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   whichwrap = "bs<>[]hl",                  -- which "horizontal" keys are allowed to travel to prev/next line
 
@@ -82,7 +66,3 @@ vim.cmd [[ au FileType * set fo-=c fo-=r fo-=o fo+=j ]]
 vim.cmd [[ autocmd FileType c,cpp setlocal commentstring=//\ %s  ]]
 vim.cmd [[ autocmd FileType json syntax match Comment +\/\/.\+$+ ]]
 
--- check core.mappings for table structure
-M.mappings = require "custom.mappings"
-
-return M

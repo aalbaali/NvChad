@@ -8,6 +8,10 @@ local altleader = vim.g.altleader
 M.disabled = {
   n = {
     [";"] = "",
+    ["<leader>wk"] = "",
+  },
+  t = {
+    ["<C-x>"] = "",
   },
 }
 
