@@ -25,6 +25,17 @@ local plugins = {
   { "williamboman/mason.nvim", opts = overrides.mason },
   { "nvim-treesitter/nvim-treesitter", opts = overrides.treesitter },
   { "nvim-tree/nvim-tree.lua", opts = overrides.nvimtree },
+  -- Override nvim-cmp
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    opts = function()
+      return require "custom.configs.cmp"
+    end,
+    config = function(_, opts)
+      require("cmp").setup(opts)
+    end,
+  },
   -- Better escape using `jk`
   {
     "max397574/better-escape.nvim",
@@ -50,6 +61,14 @@ local plugins = {
     cmd = { "TagbarToggle", "TagbarOpen" },
     config = function()
       require "custom.configs.tagbar"
+    end,
+  },
+  -- Commenting
+  {
+    "preservim/nerdcommenter",
+    lazy = false,
+    config = function()
+      require "custom.configs.nerdcommenter"
     end,
   },
   -- Mappings to surround words with chars

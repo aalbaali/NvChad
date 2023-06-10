@@ -14,6 +14,7 @@ M.treesitter = {
     "python",
     "markdown",
     "markdown_inline",
+    "cmake",
   },
   indent = {
     enable = true,
@@ -40,6 +41,7 @@ M.mason = {
     "clangd",
     "clang-format",
   },
+  automatic_installation = true
 }
 
 -- git support in nvimtree
