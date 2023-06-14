@@ -56,6 +56,11 @@ M.general = {
     ["gN"] = { "<cmd>bprev<cr>", "Previous buffer" },
     ["gL"] = { "<cmd>blast<cr>", "Last buffer" },
 
+    -- Tagbar
+    [altleader .. "tt"] = { "<cmd>TagbarToggle f<CR>", "Toggle tagbar" },
+    [altleader .. "to"] = { "<cmd>TagbarOpen f<CR>", "Open tagbar" },
+    [altleader .. "tc"] = { "<cmd>TagbarClose<CR>", "Close tagbar" },
+
     -- Quickfix
     [altleader .. "qq"] = { "<cmd>copen<CR>", "Open quick fix" },
     [altleader .. "qc"] = { "<cmd>cclose<CR>", "Close quick fix" },
@@ -234,6 +239,18 @@ M.fzf = {
     [vim.g.altleader .. "fK"] = { ":call FZFSameName('leftabove split', '', 'wincmd k')<CR>", "Find file" },
     [vim.g.altleader .. "fJ"] = { ":call FZFSameName('rightbelow split', '', 'wincmd j')<CR>", "Find file" },
     [vim.g.altleader .. "sf"] = { ":Ag <C-R>=expand('%:t')<CR><CR>", "Search file" },
+  },
+}
+
+M.build = {
+  ["n"] = {
+    [vim.g.altleader .. "kb"] = { ":AsyncRun -cwd=<root> catkin build<CR>", "Build catkin workspace" },
+    [vim.g.altleader .. "kt"] = {
+      ":AsyncRun -cwd=<root> catkin build --make-args tests<CR>",
+      "Build catkin workspace tests",
+    },
+    [vim.g.altleader .. "kn"] = { ":AsyncStop<CR>", "Stop asyncrun" },
+    [vim.g.altleader .. "<space>"] = { ":call asyncrun#quickfix_toggle(20},<CR>", "Toggle async quickfix" },
   },
 }
 
